@@ -1,0 +1,97 @@
+@charset utf-8;
+
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	height: 100%;
+}
+
+/* Demo1：定位布局*/
+div.parent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -100px;
+	height: 200px;
+	width: 400px;
+	background: #ccc;
+}
+div.parent > div.ch {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	background: #fc0;
+}
+div.parent > div#ch1 {
+	top: 0;
+	left: 0; 
+	border-radius: 0 0 100px 0;
+}
+div.parent > div#ch2 {
+	bottom: 0;
+	right: 0;
+	border-radius: 100px 0 0 0;	
+}
+
+/* Demo2：CSS3 transform属性
+div.parent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 200px;
+	width: 400px;
+	background: #ccc;
+	-webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);	
+            transform: translate(-50%,-50%);	
+}
+div.parent > div.ch {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	background: #fc0;
+}
+div.parent > div#ch1 {
+	top: 0;
+	left: 0; 
+	border-radius: 0 0 100px 0;
+}
+div.parent > div#ch2 {
+	bottom: 0;
+	right: 0;
+	border-radius: 100px 0 0 0;	
+}
+*/
+
+/* Demo3：flex布局 
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+div.parent {
+	position: relative;
+	height: 200px;
+	width: 400px;
+	background: #ccc;
+}
+div.parent > div.ch {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	background: #fc0;
+}
+div.parent > div#ch1 {
+	top: 0;
+	left: 0; 
+	border-radius: 0 0 100px 0;
+}
+div.parent > div#ch2 {
+	bottom: 0;
+	right: 0;
+	border-radius: 100px 0 0 0;	
+}
+*/

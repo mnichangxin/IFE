@@ -1,0 +1,142 @@
+@charset utf-8;
+
+/*All style*/
+* {
+	font-family: 'Microsoft Yahei';
+	font-size: 65%;
+}
+
+html{
+	height: 100%;
+	background: #fff;
+	overflow: hidden;
+}
+
+/* Demo1 */
+body{
+	position: relative;
+	padding: 20px;
+	height: 60%;
+	border: 1px solid #999;
+	background: #eee;
+}
+div.main {
+	margin-left: 230px;
+	margin-right: 170px;
+	height: 400px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-left {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 200px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-left > div.logo {
+	height: 150px;
+	margin: 0 auto;
+}
+div.aside-right {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 120px;
+	padding: 10px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-right > div.person-logo {
+	height: 100px;
+	width: 100px;
+	margin: 10px auto;
+	border: 1px solid #999;
+}
+
+
+/* Demo2 
+body{
+	padding: 20px;
+	border: 1px solid #999;
+	background: #eee;
+	overflow: hidden;
+}
+div.main {
+	margin-left: 230px;
+	margin-right: 170px;
+	height: 400px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-left {
+	float: left;
+	width: 200px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-right {
+	float: right;
+	width: 120px;
+	padding: 10px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-left > div.logo {
+	height: 150px;
+	margin: 0 auto;
+}
+div.aside-right > div.person-logo {
+	height: 100px;
+	width: 100px;
+	margin: 10px auto;
+	border: 1px solid #999;
+}
+*/
+
+/* Demo3
+body{
+	padding: 20px;
+	border: 1px solid #999;
+	background: #eee;
+	overflow: hidden;
+}
+div.main {
+	float: left;
+	width: 100%;
+	height: 400px;
+}
+div.main > div.main-wrap {
+	height: 400px;
+	margin-left: 220px;
+    margin-right: 200px;
+    border: 1px solid #999;
+    background: #fff;
+}
+div.aside-left {
+	float: left;
+	width: 200px;
+	margin-left: -100%;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-right {
+	float: left;
+	width: 120px;
+	margin-left: -150px;
+	padding: 10px;
+	border: 1px solid #999;
+	background: #fff;
+}
+div.aside-left > div.logo {
+	height: 150px;
+	margin: 0 auto;
+}
+div.aside-right > div.person-logo {
+	height: 100px;
+	width: 100px;
+	margin: 10px auto;
+	border: 1px solid #999;
+}
+*/
