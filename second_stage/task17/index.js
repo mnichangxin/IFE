@@ -36,6 +36,7 @@ function randomBuildData(seed) {
     return returnData;
 }
 
+//源数据
 var aqiSourceData = {
     "北京": randomBuildData(500),
     "上海": randomBuildData(300),
@@ -48,22 +49,46 @@ var aqiSourceData = {
     "沈阳": randomBuildData(500)
 };
 
-console.log(aqiSourceData);
-
 // 用于渲染图表的数据
 var chartData = {};
 
 // 记录当前页面的表单选项
 var pageState = {
-    nowSelectCity: '',
+    nowSelectCity: '北京',
     nowGraTime: 'day'
 }
 
 /**
  * 渲染图表
  */
-function renderChart(pageState) {
+function renderChart() {
 
+    var chartWrap = document.getElementById('aqi-chart-wrap'); 
+    var chart = '',
+        color = '';
+
+    for (var renderData in chartData) {
+
+        color = chartColor(chartData[renderData]);
+        chart += '<div class="chart" title="' + renderData + '" style="width:10px;height:'+ chartData[renderData] + 'px;background:' + color + ';display:inline-block;margin-left:10px">' + '</div>';
+    }
+
+    chartWrap.innerHTML = chart;
+}
+
+function chartColor(value) {
+
+    if (value <= 100) {
+        return "#2A9B19";
+    } else if (value <= 200) {
+        return "#0b0cff";
+    } else if (value <= 300) {
+        return "#dd150c";
+    } else if (value <= 400) {
+        return "#790996";
+    } else {
+        return "black";
+    }
 }
 
 /**
@@ -71,26 +96,21 @@ function renderChart(pageState) {
  */
 function graTimeChange() {
 
-    // 确定是否选项发生了变化 
-        
-    // 设置对应数据
     pageState.nowGraTime = event.target.value;
 
-    // 调用图表渲染函数
-    renderChart(pageState);
+    initAqiChartData();
+    renderChart();
 }
 
 /**
  * select发生变化时的处理函数
  */
 function citySelectChange(event) {
-    
-    // 确定是否选项发生了变化 
-    // 设置对应数据
+
     pageState.nowSelectCity = event.target.value;
 
-    // 调用图表渲染函数
-    renderChart(pageState);
+    initAqiChartData();
+    renderChart();
 }
 
 /**
@@ -110,9 +130,6 @@ function initCitySelector() {
 
     var city = document.getElementById('city-select');
 
-    // 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
-
-    // 给select设置事件，当选项发生变化时调用函数citySelectChange
     city.addEventListener('change', citySelectChange);
 }
 
@@ -121,33 +138,74 @@ function initCitySelector() {
 */
 function initAqiChartData() {
 
-    chartData = {};
     var nowChartData;
-    // 将原始的源数据处理成图表需要的数据格式
-    // 处理好的数据存到 chartData 中
-    for (city in aqiSourceData) {
 
-        if (city == pageState.nowSelectCity) {
+    nowChartData = aqiSourceData[pageState.nowSelectCity];
 
-            nowChartData = aqiSourceData[city];
-        }
+    if (pageState.nowGraTime == 'day') {
+
+        chartData = nowChartData;
+
     }
+    if (pageState.nowGraTime == 'week') {
+        
+        chartData = {};
 
-    switch (pageState.nowGraTime) {
+        var dataCount = 0, //数据累加器
+            weekCount = 0, //周数累加器
+            dayCount  = 0; //天数累加器
 
-        case 'day':
-            chartData = nowChartData;
-            break;
+        for (var timeItem in nowChartData) {
 
-        case 'week':
-            for (time in nowChartData) {
+            dataCount += nowChartData[timeItem];
 
-                
+            dayCount++;
+
+            if (new Date(timeItem).getDay() == 6) {
+
+                weekCount++;
+                chartData['第' + weekCount + '周'] = Math.floor(dataCount/dayCount);
+
+                dataCount = 0;
+                dayCount  = 0;
+            }  
+        }    
+
+        //如果最后一天不是周六
+        if (dayCount != 0) {
+
+            weekCount++;
+            chartData['第' + weekCount + '周'] = Math.floor(dataCount/dayCount);
+        }    
+
+    }
+    if (pageState.nowGraTime == 'month') {
+
+        chartData = {};
+
+        var dataCount  = 0, //数据累加器
+            monthCount = 0, //月数累加器
+            dayCount   = 0; //天数累加器
+
+        for (var timeItem in nowChartData) {
+
+            var monthDate = new Date(timeItem);
+            var str = monthDate.setDate(monthDate.getDate() + 1);
+           
+            dataCount += nowChartData[timeItem];
+
+            dayCount++;
+
+            if (monthDate.getDate() == 1) {
+
+                monthCount++;
+
+                chartData['第' + monthCount + '月'] = Math.floor(dataCount/dayCount); //需要减去每个月的一号
+
+                dataCount = 0;                                                                                                                                                                                                                                                                                                                                                                              
+                dayCount = 0;
             }
-            break;
-
-        case 'month':
-            break;
+        }
     }
 
 }
@@ -159,7 +217,8 @@ function init() {
 
     initGraTimeForm();
     initCitySelector();
-    //initAqiChartData();
+    initAqiChartData();
+    renderChart();
 }
 
 init();

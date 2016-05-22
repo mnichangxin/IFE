@@ -1,0 +1,13 @@
+@charset utf8;
+
+#aqi-chart-wrap {
+	margin-top: 100px;
+	border: 1px solid red;
+	min-width: 1280px;
+}
+.chart {
+	background: red;
+}
+
+
+
