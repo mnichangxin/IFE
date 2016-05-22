@@ -65,12 +65,13 @@ function renderChart() {
 
     var chartWrap = document.getElementById('aqi-chart-wrap'); 
     var chart = '',
-        color = '';
+        color = '',
+        width = chartwidth();
 
     for (var renderData in chartData) {
 
         color = chartColor(chartData[renderData]);
-        chart += '<div class="chart" title="' + renderData + '" style="width:10px;height:'+ chartData[renderData] + 'px;background:' + color + ';display:inline-block;margin-left:10px">' + '</div>';
+        chart += '<div class="chart" title="' + renderData + ' 空气质量指数：' + chartData[renderData] + '" style="width:'+ width +';height:'+ chartData[renderData] + 'px;background:' + color + ';">' + '</div>';
     }
 
     chartWrap.innerHTML = chart;
@@ -88,6 +89,19 @@ function chartColor(value) {
         return "#790996";
     } else {
         return "black";
+    }
+}
+
+function chartwidth() {
+
+    var value = pageState.nowGraTime;
+
+    if(value == 'day') {
+        return '20px';
+    } else if (value == 'week') {
+        return '50px';
+    }else {
+        return '80px';
     }
 }
 
