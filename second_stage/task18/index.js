@@ -10,14 +10,13 @@ window.onload = function() {
 
 	//队列项点击触发的事件
 	wrap.addEventListener('click', itemHandler);
-
 }
 
 //按钮事件
 function buttonHandler(event) {
 
 	var item = document.getElementById('item');
-	
+
 	if (event.target.tagName.toLowerCase() == 'button' && item.value != '') {
 
 		if (event.target.id == 'left-in') {	 
