@@ -17,17 +17,21 @@ function buttonHandler(event) {
 
 	var item = document.getElementById('item');
 
-	if (event.target.tagName.toLowerCase() == 'button' && item.value != '') {
+	if (event.target.tagName.toLowerCase() == 'button' && (/^[0-9]+$/).test(item.value)) {
 
 		if (event.target.id == 'left-in') {	 
 			queue.unshift(item.value);
 		} else if (event.target.id == 'right-in') {
 			queue.push(item.value);
-		} else if (event.target.id == 'left-out') {
-			queue.length ? alert(queue.shift()) : 0;
-		} else if(event.target.id == 'right-out') {
-			queue.length ? alert(queue.pop()) : 0;
-		}
+		} 
+	}
+
+	if (event.target.id == 'left-out') {
+		queue.length ? alert(queue.shift()) : 0;
+	} 
+
+	if(event.target.id == 'right-out') {
+		queue.length ? alert(queue.pop()) : 0;
 	}
 
 	render();
