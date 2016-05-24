@@ -21,10 +21,8 @@ function buttonHandler(event) {
 
 		if (event.target.id == 'left-in') {	 
 			queue.unshift(item.value);
-			alert(item.value);
 		} else if (event.target.id == 'right-in') {
 			queue.push(item.value);
-			alert(item.value);
 		} else if (event.target.id == 'left-out') {
 			queue.length ? alert(queue.shift()) : 0;
 		} else if(event.target.id == 'right-out') {
