@@ -1,59 +1,14 @@
 //数据队列
 var queue = []; 
 
-//排序快照
-var snapshot = [];
-
-//动画间隔
-var INTERVAL = 50;
-
-//随机队列
-function queueRandom() {
-
-	queue = [];
-
-	for (var i = 0; i < 60; ++i) {
-
-		queue.push(Math.floor(Math.random() * 90 + 10));
-	}
-
-	render();
-}
-
-/*
- * 排序算法,后续继续添加更多算法
- */
-var sort = {
-
-	//冒泡排序，每一次循环保存当前数组的快照
-	bubble: function() {
-
-		for (var i = 0, len = queue.length; i < len; ++i) {
-
-			for (var j = 1; j < len - i; ++j) {
-
-				if (queue[j - 1] > queue[j]) {
-
-					var temp = queue[j - 1];
-					queue[j - 1] = queue[j];
-					queue[j] = temp;
-
-					snapshot.push(JSON.parse(JSON.stringify(queue))); //保存快照
-				}
-			}
-		}
-
-		paint();
-
-	}
-};
+//匹配队列
+var queryList = [];
 
 window.onload = function() {
 
 	var inOut = document.getElementById('in-out');
 	var wrap = document.getElementById('wrap');
-	var bubble = document.getElementById('bubble');
-	var random = document.getElementById('random'); 
+	var query = document.getElementById('query');
 
 	//按钮点击触发的事件
 	inOut.addEventListener('click', buttonHandler);
@@ -61,27 +16,24 @@ window.onload = function() {
 	//队列项点击触发的事件
 	wrap.addEventListener('click', itemHandler);
 
-	//随机生成
-	random.addEventListener('click', queueRandom);
-
-	//冒泡排序
-	bubble.addEventListener('click',sort.bubble);
+	//查询事件
+	query.addEventListener('click',queryHandler);
 
 }
 
 //按钮事件
-function buttonHandler(event) {
+function buttonHandler(event) { 
 
-	var item = document.getElementById('item');
+	var str = document.getElementById('area').value;
 
-	if (event.target.tagName.toLowerCase() == 'button' && (/^([1-9]\d|100)$/).test(item.value) && queue.length <= 60) {
+	if (event.target.tagName.toLowerCase() == 'button' && str !== '' && queue.length <= 60) {
 
 		if (event.target.id == 'left-in') {	 
-			queue.unshift(parseInt(item.value));
+			strHandler(str,event.target.id);
 		}
 
 		if (event.target.id == 'right-in') {
-			queue.push(parseInt(item.value));
+			strHandler(str,event.target.id);
 		} 
 	}
 
@@ -109,36 +61,69 @@ function itemHandler(event) {
 	}
 }
 
+//查询事件
+function queryHandler(event) {
+
+	var queryData = document.getElementById('content').value;
+
+	var pattern =  new RegExp(queryData);
+
+	queryList = [];
+
+	for (var i = 0, len = queue.length; i < len; ++i) {
+
+		if (pattern.exec(queue[i])) {
+
+			queryList.push(i);
+		}	
+	}
+
+	render();
+
+	flagRender();
+}
+
+//字符串处理
+function strHandler(str,flag) {
+
+	if(flag == 'left-in')
+		queue = (str.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g)).concat(queue);	
+	if(flag == 'right-in')
+		queue = queue.concat(str.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g));
+}
+
 //队列渲染
 function render(snapshot) {
 
 	var wrap = document.getElementById('wrap'),
-		arr = snapshot || queue;
+		arr = snapshot || queue,
 		renderItem = '';
 
 	for (var i = 0, len = arr.length;i < len; ++i) {
 
-		renderItem += '<div class="item" style="height:' + arr[i] + 'px;"></div>';
+		renderItem += '<div class="item">'+ arr[i] + '</div>';
 	}
 
 	wrap.innerHTML = renderItem;
-	
 }
 
-//绘制可视化动画
-function paint() {
+//标识渲染
+function flagRender() {
 
-	var timer = setInterval(function() {
-
-		if (snapshot.length != 0) {
-
-			render(snapshot.shift());
-
-		} else {
-
-			clearInterval(timer);
-		}	
-
-	}, INTERVAL);		
 	
+	var queryData = document.getElementById('content').value,
+	          item = document.getElementsByClassName('item'),
+		              wrap = document.getElementById('wrap'),
+				                             renderItem = '';
+
+	for (var i = 0, len1 = queryList.length; i < len1; ++i) {
+
+		for (var j = 0, len2 = item.length; j < len2; ++j) {
+
+			if (queryList[i] == j) {
+				
+				item[j].innerHTML = item[j].innerHTML.replace(new RegExp(queryData, 'g'), '<span class="queryRender">' + queryData + '</span>');
+			}
+		}
+	}
 }
