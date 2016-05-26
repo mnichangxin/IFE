@@ -109,16 +109,15 @@ function render(snapshot) {
 
 //标识渲染
 function flagRender() {
-
 	
 	var queryData = document.getElementById('content').value,
 	          item = document.getElementsByClassName('item'),
 		              wrap = document.getElementById('wrap'),
 				                             renderItem = '';
 
-	for (var i = 0, len1 = queryList.length; i < len1; ++i) {
+	for (var i = 0, len = queryList.length; i < len; ++i) {
 
-		for (var j = 0, len2 = item.length; j < len2; ++j) {
+		for (var j = 0, len = item.length; j < len; ++j) {
 
 			if (queryList[i] == j) {
 				
