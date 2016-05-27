@@ -65,7 +65,7 @@ window.onload = function() {
 	random.addEventListener('click', queueRandom);
 
 	//冒泡排序
-	bubble.addEventListener('click',sort.bubble);
+	bubble.addEventListener('click', sort.bubble);
 
 }
 
@@ -116,9 +116,9 @@ function render(snapshot) {
 		arr = snapshot || queue;
 		renderItem = '';
 
-	for (var i = 0, len = arr.length;i < len; ++i) {
+	for (var i = 0, len = arr.length; i < len; ++i) {
 
-		renderItem += '<div class="item" style="height:' + arr[i] + 'px;"></div>';
+		renderItem += '<div class="item" style="height:' + arr[i] * 2 + 'px;"></div>';
 	}
 
 	wrap.innerHTML = renderItem;
@@ -139,6 +139,5 @@ function paint() {
 			clearInterval(timer);
 		}	
 
-	}, INTERVAL);		
-	
+	}, INTERVAL);			
 }
