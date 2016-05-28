@@ -76,7 +76,7 @@ EventHandler.prototype = {
 
 					var queueFilter = queueFilter.filter(function(item) {
 
-						return queue.indexOf(item) == -1;
+						return queue.indexOf(item) == -1 && item != '';
 
 					});
 
@@ -120,31 +120,37 @@ EventHandler.prototype = {
 			if (event.target.className == 'item') {
 
 				var target = event.target;
-				//queue.splice(queue.indexOf(target.innerHTML), 1);
-				//var child = '<div style="background:red;height:5px;width:5px">删除<div>';
 
 				var child = document.createElement('div');
 
-				child.style.className == 'del';
-				child.style.background = 'red';
-				child.style.height = '10px';
-				child.style.width = '10px';
-				child.style.innerHTML = '删除';
-				child.style.display = 'inline-block';
+				child.className = 'del';
+				child.innerHTML = '点击删除' + target.innerHTML;
 
 				target.parentNode.insertBefore(child, target);
 			}
 		});
 
+		wrap.addEventListener('mouseout', function(event) {
+
+			if (event.target.className == 'del') {
+
+				var target = event.target;
+
+				target.parentNode.removeChild(target);
+			}
+
+		});
+
 		wrap.addEventListener('click', function(event) {
 
-			if (event.target.className == 'item') {
+			if (event.target.className == 'del') {
 
 				var target = event.target;
 
 				queue.splice(queue.indexOf(target.innerHTML), 1);
 
-				target.parentNode.removeChild(event.target);
+				target.parentNode.removeChild(event.target.nextSibling);
+				target.parentNode.removeChild(target);
 			}
 		});
 	}
