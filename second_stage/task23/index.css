@@ -6,7 +6,7 @@
 	align-items: center;
 	margin: 50px auto;
 	height: 500px;
-	width: 100%;
+	width: 1800px;
 	border: 1px solid #000;
 }
 .tree2 {
@@ -14,7 +14,7 @@
 	justify-content: space-around;
 	align-items: center;
 	height: 400px;
-	width: 100%;
+	width: 550px;
 	border: 1px solid #000;
 }
 .tree3 {
@@ -22,12 +22,12 @@
 	justify-content: space-around;
 	align-items: center;
 	height: 300px;
-	width: 80%;
+	width: 150px;
 	border: 1px solid #000;
 }
 .tree4 {
 	height: 200px;
-	width: 70%;
+	width: 50px;
 	border: 1px solid #000;
 }
 

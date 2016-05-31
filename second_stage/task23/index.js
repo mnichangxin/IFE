@@ -30,9 +30,8 @@ var EventUtil = {
 
 window.onload = function () {
 
-	var preBtn = $('pre'),
-          inBtn = $('in'),
-      postBtn = $('post');
+	var bfc = $('bfc'),
+        dfs = $('dfs');
 
     EventUtil.addHandler(preBtn, 'click', function() {
     	reset()
@@ -60,44 +59,59 @@ function $(id) {
 	}
 }
 
-//前序遍历
-function preOrder(node) {
-	
-	if (!(node == null)) {
+/* 广度优先遍历（BFC）*/
 
-		queue.push(node);
-		preOrder(node.firstElementChild);
-		preOrder(node.lastElementChild);
+//定义存储队列
+var queue1 = [],
+	queue2 = [];
+
+function BFC(node) {
+
+	if (node) {
+
+		queue1.push(node);
 	}
 
-	console.log(queue.length);
+	while (queue1.length) {
+		
+		queue1.shift(node);
+		queue2.push(node);
+
+		if (node.childNode.length) {
+
+			for (var i = 0, len = node.childNode.length; i < len; ++i) {
+
+				queue1.push(node.childNode[i]);
+			}
+		}
+	}
 }
 
-//中序遍历
-function inOrder(node) {
+/* 深度优先遍历（DFS） */
+function DFS(node) {
 
-	if (!(node == null)) {
+	if (node) {
 
-		inOrder(node.firstElementChild);
-		queue.push(node);
-		inOrder(node.lastElementChild);
+		queue1.push(node);
 	}
 
-	console.log(queue.length);
-}
+	for (var i = 0, len = node.childNode.length; i < len; ++i) {
 
-//后序遍历
-function postOrder(node) {
-
-	if (!(node == null)) {
-
-		postOrder(node.firstElementChild);
-		postOrder(node.lastElementChild);
-		queue.push(node);
+		queue1.push(node.childNode[i]);
 	}
 
-	console.log(queue.length);
+	while (queue1.length) {
+
+		queue1.pop();
+		queue1.push(node);
+
+		if (node.childNode.length) {
+
+			queue1.push(queue1.childNode[1]);
+		}
+	}
 }
+
 
 //渲染函数
 function render(node) {
