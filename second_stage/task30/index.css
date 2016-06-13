@@ -1,0 +1,49 @@
+@charset utf-8;
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font: bold 18px 'Microsoft YaHei';
+}
+.form-wrap {
+	padding-top: 100px;
+	text-align: center;
+}
+.form {
+	display: inline-block;
+	text-align: right;
+}
+.form-item {
+	margin-bottom: 50px;
+	text-align: right;
+}
+.field {
+	margin-left: 10px;
+	height: 30px;
+	width: 250px;
+	outline: 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.field:focus {
+	border: 1px solid #76b2c6;
+}
+.info {
+	height: 14px;
+	padding-top: 5px;
+	font: bold 14px 'Microsoft YaHei';
+	color: #ccc;
+	text-align: left;
+	text-indent: 92px;
+}
+.button {
+	display: inline-block;
+	height: 36px;
+	width: 36px;
+	padding: 0 10px;
+	line-height: 36px;
+	border-radius: 5px;
+	background: #2a6ab9;
+	color: #fff;
+	cursor: pointer;
+}
