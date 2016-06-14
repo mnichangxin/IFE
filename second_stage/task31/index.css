@@ -1,0 +1,39 @@
+@charset utf-8;
+
+html, body {
+	margin: 0;
+	font: bold 16px 'Microsoft YaHei';
+}
+
+.container {
+	text-align: center;
+}
+#radio {
+	display: inline-block;
+	margin-top: 200px;
+	width: 500px;
+}
+#radio p {
+	display: inline-block;
+	padding: 0 30px;
+}
+#stu {
+	margin-top: 50px;
+}
+#school {
+	margin-left: 20px;
+}
+#none-stu {
+	display: none;
+}
+#none-stu input {
+	outline: 0;
+	margin-left: 10px;
+	margin-top: 50px;
+	height: 20px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+#none-stu input:focus {
+	border: 1px solid #3793FD;
+}
