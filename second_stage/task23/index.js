@@ -87,12 +87,19 @@ function BFC(node) {
 	}
 }
 
-/* 深度优先遍历（DFS） */
+/* 深度优先遍历（DFS）*/
+var queue[],
+   visted[];   
+
 function DFS(node) {
+
+	for () {
+
+	}
 
 	if (node) {
 
-		queue1.push(node);
+		queue.push(node);
 	}
 
 	for (var i = 0, len = node.childNode.length; i < len; ++i) {
