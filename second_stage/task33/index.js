@@ -12,7 +12,7 @@ function handler() {
 
 	var top = block.style.top,
 	left = block.style.right;
-	console.log(block.style.position);
+	
 	switch(content) {
 		case 'GO':
 			if (flag == 'top' && top != 0) {

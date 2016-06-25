@@ -28,12 +28,8 @@ html, body {
 }
 .block {
 	position: absolute;
-	top: 255px;
-	left: 255px;
-	height: 40px;
-	width: 50px;
-	border-top: 10px solid #0100FE;
 	background: #FE0000;
+	/*animation: block-animation 2s 1s forwards;*/
 }
 
 .form {
@@ -51,3 +47,21 @@ input[type="button"] {
 	background: #fff;
 	cursor: pointer;
 }
+
+/*@keyframes tun-left {
+	0% {
+		height: 50px;
+		width: 40px;
+		border-left: 10px solid #0100FE;
+		border-top: 0;
+	},
+	100% {
+		height: 50px;
+		width: 40px;
+		border-left: 10px solid #0100FE;
+		border-top: 0;
+	}
+}
+@keyframes tun-right {
+
+}*/
