@@ -1,0 +1,53 @@
+@charset utf-8;
+
+html, body {
+	margin: 0;
+}
+
+.table {
+	position: relative;
+	margin:100px auto 0 auto;
+	height: 509px;
+	width: 509px;
+	border: 2px solid #000;
+}
+.normal, .special, .last, .last-special {
+	float: left;
+	height: 50px;
+	width: 50px;
+}
+.normal {
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.special {
+	border-bottom: 1px solid #ccc;
+}
+.last {
+	border-right: 1px solid #ccc;
+}
+.block {
+	position: absolute;
+	top: 255px;
+	left: 255px;
+	height: 40px;
+	width: 50px;
+	border-top: 10px solid #0100FE;
+	background: #FE0000;
+}
+
+.form {
+	margin: 20px auto;
+	width: 509px;
+}
+input[type="text"] {
+	outline: 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+input[type="button"] {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background: #fff;
+	cursor: pointer;
+}
